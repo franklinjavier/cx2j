@@ -52,8 +52,6 @@
     -webkit-animation-direction: alternate;
     -webkit-animation-timing-function: in-and-out;
 }
-
-
 @-webkit-keyframes error {
     0% { background: white; }
     100% { 
