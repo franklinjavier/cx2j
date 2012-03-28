@@ -13,24 +13,24 @@
  *
  */
 
-;(function( window, document, undefined ){ 
+;(function( window, document, undefined ) { 
 
     var app = (function() {
 
-        var _document = document,
-            _extensionAllow = /xml/;
+        var _extensionAllow = /xml/;
 
         function init() {
         
             if ( window.File && window.FileReader && window.FileList && window.Blob ) {
 
-                // Setup the dnd listeners.
+                // Setup the dnd listeners
                 var dropZone = document.getElementById('dropZone');
                 dropZone.addEventListener( 'dragover', handleDragOver, false );
                 dropZone.addEventListener( 'dragleave', handleDragLeave, false );
                 dropZone.addEventListener( 'drop', readBlob, false );
-                // click on textarea to select all content
-                _document.getElementById('result').onclick = function() {
+
+                // Click on textarea to select all content
+                document.getElementById('result').onclick = function() {
                     this.select();
                 }
 
@@ -47,26 +47,27 @@
             evt.stopPropagation();
             evt.preventDefault();
 
-            var files = evt.dataTransfer.files[ 0 ], // FileList object.
-                start =  0,
-                stop = files.size - 1,
-                result = _document.getElementById('result'),
-                reader = new FileReader();
+            var files = evt.dataTransfer.files[ 0 ]; // FileList object
 
-            // drop a file with an extension not allowed
+            // Drop a file with an extension not allowed
             if ( !_extensionAllow.test( files.type ) ) {
 
                 evt.srcElement.className = 'drag-not-allow';
-                _document.getElementById('error').style.visibility = 'visible';
+                document.getElementById('error').style.visibility = 'visible';
 
                 setTimeout(function() {
                     evt.srcElement.className = '';
-                    _document.getElementById('error').style.visibility = 'hidden';
+                    document.getElementById('error').style.visibility = 'hidden';
                 }, 2000);
 
                 return false;
 
             } 
+
+            var reader = new FileReader(),
+                start =  0,
+                stop = files.size - 1,
+                result = document.getElementById('result');
 
             // If we use onloadend, we need to check the readyState.
             reader.onloadend = function( evt ) {
@@ -78,24 +79,24 @@
                         tree = xotree.parseXML( evt.target.result ),
                         resultJson = dumper.dump( tree );
 
-                    if ( _document.getElementById('minify').checked ) {
+                    if ( document.getElementById('minify').checked ) {
                         result.innerText = JSON.minify( resultJson );
                     } else {
                         result.innerText = resultJson;
                     }
 
-                    _document.getElementById('byteRange')
+                    document.getElementById('byteRange')
                         .innerText = 'Read bytes: ' + files.size + ' byte file';
                 }
 
             };
 
-            if ( files.webkitSlice ) { // for webkit
+            if ( files.webkitSlice ) { // For webkit
                 var blob = files.webkitSlice( start, stop + 1 );
-            } else if (files.mozSlice) { // for mozilla
+            } else if (files.mozSlice) { // For mozilla
                 var blob = files.mozSlice( start, stop + 1 );
             }
-            //reader.readAsBinaryString( blob ); // encoding problem
+            //reader.readAsBinaryString( blob ); // Encoding problem
             reader.readAsText( blob );
 
             evt.target.className = '';
@@ -104,7 +105,7 @@
         function handleDragOver( evt ) {
             evt.stopPropagation();
             evt.preventDefault();
-            evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+            evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy
             evt.srcElement.className = 'drag-enter';
         }
 
