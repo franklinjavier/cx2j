@@ -3,6 +3,7 @@
 }
 .show { display: inline; }
 .hide { display: none; }
+#options label { font-size: 20px; }
 #byteRange { margin-top: 5px; }
 #dropZone { 
     border: 5px dashed #ccc; 
