@@ -66,6 +66,8 @@
 
             } 
 
+            evt.target.className = '';
+
             var reader = new FileReader(),
                 start =  0,
                 stop = files.size - 1,
@@ -106,7 +108,7 @@
             evt.stopPropagation();
             evt.preventDefault();
             evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy
-            evt.target.className = 'drag-enter';
+            evt.target.className = 'active';
         }
 
         function handleDragLeave(evt) {
