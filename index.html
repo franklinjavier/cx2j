@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Convert XML to JSON with HTML5 API (drag n drop)</title>
+
+    <link rel="stylesheet" href="../../normalize.css" type="text/css" media="screen" charset="utf-8"/>
+
+    <style>
+        body {
+            margin: 10px;
+        }
+        #byteRange { margin-top: 5px; }
+        #dropZone { 
+            border: 5px dashed silver; 
+            height: 200px;
+            width: 99%;
+            text-align: center;
+        }
+
+        #dropZone span { 
+            color: #666; 
+            font: 26px Arial;
+            position: absolute;
+            width: 150px;
+            height: 20px;
+            left: 50%;
+            margin-left: -75px;
+            margin-top: 70px;
+        }
+        
+        #dropZone.drag-enter { border: 5px dashed lightgreen !important; }
+        #dropZone.drag-leave { border: 5px dashed silver !important; }
+        #dropZone.drag-not-allow { border: 5px dashed red !important; }
+        #result {
+            margin: 5px 0;
+            height: 300px;
+            width: 99%;
+        }
+        #error {
+            visibility: hidden;
+            color: #f00;
+        }
+    </style>
+
+
+</head>
+<body>
+
+    <h1>Convert XML to JSON with HTML5 File API (drag n drop)</h1>
+    <p><label><input type="checkbox" id="minify" /> Minify?</label></p> 
+
+    <div id="dropZone">
+        <span>Drop here</span>
+    </div>
+    <div id="byteRange"></div>
+    <div id="error">File type not allowed.</div>
+    <textarea id="result"></textarea>
+
+    <script src="ObjTree.js"></script>
+    <script src="jkl-dumper.js"></script>
+    <script src="minify.json.js"></script>
+    <script type="text/javascript" charset="utf-8" src="script.js"></script>
+
+</body>
+</html>
