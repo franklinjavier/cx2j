@@ -4,45 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Convert XML to JSON with HTML5 API (drag n drop)</title>
 
-    <link rel="stylesheet" href="../../normalize.css" type="text/css" media="screen" charset="utf-8"/>
-
-    <style>
-        body {
-            margin: 10px;
-        }
-        #byteRange { margin-top: 5px; }
-        #dropZone { 
-            border: 5px dashed silver; 
-            height: 200px;
-            width: 99%;
-            text-align: center;
-        }
-
-        #dropZone span { 
-            color: #666; 
-            font: 26px Arial;
-            position: absolute;
-            width: 150px;
-            height: 20px;
-            left: 50%;
-            margin-left: -75px;
-            margin-top: 70px;
-        }
-        
-        #dropZone.drag-enter { border: 5px dashed lightgreen !important; }
-        #dropZone.drag-leave { border: 5px dashed silver !important; }
-        #dropZone.drag-not-allow { border: 5px dashed red !important; }
-        #result {
-            margin: 5px 0;
-            height: 300px;
-            width: 99%;
-        }
-        #error {
-            visibility: hidden;
-            color: #f00;
-        }
-    </style>
-
+    <link rel="stylesheet" href="assets/css/normalize.css" type="text/css" media="screen" charset="utf-8"/>
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" media="screen" charset="utf-8"/>
 
 </head>
 <body>
@@ -57,10 +20,10 @@
     <div id="error">File type not allowed.</div>
     <textarea id="result"></textarea>
 
-    <script src="ObjTree.js"></script>
-    <script src="jkl-dumper.js"></script>
-    <script src="minify.json.js"></script>
-    <script type="text/javascript" charset="utf-8" src="script.js"></script>
+    <script type="text/javascript" charset="utf-8" src="assets/js/ObjTree.js"></script>
+    <script type="text/javascript" charset="utf-8" src="assets/js/jkl-dumper.js"></script>
+    <script type="text/javascript" charset="utf-8" src="assets/js/minify.json.js"></script>
+    <script type="text/javascript" charset="utf-8" src="assets/js/script.js"></script>
 
 </body>
 </html>
