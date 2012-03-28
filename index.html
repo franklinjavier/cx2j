@@ -10,21 +10,43 @@
 </head>
 <body>
 
-    <h1>Convert XML to JSON with HTML5 File API (drag n drop)</h1>
-    <p><label><input type="checkbox" id="minify" /> Minify?</label></p> 
+    <div id="wrapper">
 
-    <div id="dropZone">
-        <span>Drop here</span>
+        <header>
+            <h1>Convert XML to JSON with HTML5 File API (drag n drop)</h1>
+        </header>
+
+        <section>
+
+            <header id="options">
+                <input type="checkbox" id="minify" /> 
+                <label for="minify">Minify?</label>
+            </header> 
+
+            <!-- Drag n drop zone  -->
+            <div id="dropZone">
+                <span>Drop here</span>
+            </div>
+
+            <!-- Messages / file info -->
+            <p id="byteRange" class="hide"></p>
+            <p id="messageError" class="hide">File type not allowed.</p>
+            <p id="messageOk" class="hide">Converted successfuly.</p>
+
+            <!-- Result -->
+            <section>
+                <textarea id="result"></textarea>
+            </section>
+            
+        </section>
+    
     </div>
-    <div id="byteRange"></div>
-    <div id="error">File type not allowed.</div>
-    <textarea id="result"></textarea>
 
+    
     <script type="text/javascript" charset="utf-8" src="assets/js/ObjTree.js"></script>
     <script type="text/javascript" charset="utf-8" src="assets/js/jkl-dumper.js"></script>
     <script type="text/javascript" charset="utf-8" src="assets/js/minify.json.js"></script>
     <script type="text/javascript" charset="utf-8" src="assets/js/script.js"></script>
-
 
     <script type="text/javascript">
         var _gaq = _gaq || [];
@@ -37,5 +59,6 @@
             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>
+
 </body>
 </html>

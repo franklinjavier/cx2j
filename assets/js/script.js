@@ -29,15 +29,14 @@
                 dropZone.addEventListener( 'dragleave', handleDragLeave, false );
                 dropZone.addEventListener( 'drop', readBlob, false );
 
-                // Click on textarea to select all content
+                // Click on textarea select all content
                 document.getElementById('result').onclick = function() {
                     this.select();
                 }
 
             } else { 
-
-                alert('The File APIs are not fully supported in this browser.');
-
+                document.getElementById('wrapper').className = 'hide';
+                alert('The File APIs are not fully supported in this browser :(');
             }
         
         }
@@ -47,17 +46,20 @@
             evt.stopPropagation();
             evt.preventDefault();
 
+            // reset message 
+            document.getElementById('messageOk').className = 'hide';
+
             var files = evt.dataTransfer.files[ 0 ]; // FileList object
 
             // Drop a file with an extension not allowed
             if ( !_extensionAllow.test( files.type ) ) {
 
-                evt.srcElement.className = 'drag-not-allow';
-                document.getElementById('error').style.visibility = 'visible';
+                evt.target.className = 'drag-not-allow';
+                document.getElementById('messageError').className = 'show';
 
                 setTimeout(function() {
-                    evt.srcElement.className = '';
-                    document.getElementById('error').style.visibility = 'hidden';
+                    evt.target.className = '';
+                    document.getElementById('messageError').className = 'hide';
                 }, 2000);
 
                 return false;
@@ -77,42 +79,40 @@
                     var xotree = new XML.ObjTree(),
                         dumper = new JKL.Dumper(),
                         tree = xotree.parseXML( evt.target.result ),
-                        resultJson = dumper.dump( tree );
+                        resultJson = dumper.dump( tree )
+                        resultContent = '';
 
-                    if ( document.getElementById('minify').checked ) {
-                        result.innerText = JSON.minify( resultJson );
-                    } else {
-                        result.innerText = resultJson;
-                    }
+                    document.getElementById('minify').checked === true ? 
+                        resultContent = JSON.minify( resultJson ) :
+                        resultContent = resultJson; 
 
+                    result.textContent = resultContent;
+                    result.select();
                     document.getElementById('byteRange')
                         .innerText = 'Read bytes: ' + files.size + ' byte file';
+
+                    document.getElementById('messageOk').className = 'show';
+                    evt.target.className = '';
+
                 }
 
             };
 
-            if ( files.webkitSlice ) { // For webkit
-                var blob = files.webkitSlice( start, stop + 1 );
-            } else if (files.mozSlice) { // For mozilla
-                var blob = files.mozSlice( start, stop + 1 );
-            }
-            //reader.readAsBinaryString( blob ); // Encoding problem
-            reader.readAsText( blob );
-
-            evt.target.className = '';
+            //reader.readAsBinaryString( files ); // Encoding problem
+            reader.readAsText( files );
         }
 
         function handleDragOver( evt ) {
             evt.stopPropagation();
             evt.preventDefault();
             evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy
-            evt.srcElement.className = 'drag-enter';
+            evt.target.className = 'drag-enter';
         }
 
         function handleDragLeave(evt) {
             evt.stopPropagation();
             evt.preventDefault();
-            evt.srcElement.className = '';
+            evt.target.className = '';
         }
 
         return {

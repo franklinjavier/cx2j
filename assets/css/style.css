@@ -1,14 +1,16 @@
-body {
-    margin: 10px;
+#wrapper {
+    margin: 10px 30px;
 }
+.show { display: inline; }
+.hide { display: none; }
 #byteRange { margin-top: 5px; }
 #dropZone { 
     border: 5px dashed silver; 
     height: 200px;
+    margin-top: 10px;
     width: 99%;
     text-align: center;
 }
-
 #dropZone span { 
     color: #666; 
     font: 26px Arial;
@@ -19,16 +21,17 @@ body {
     margin-left: -75px;
     margin-top: 70px;
 }
-
 #dropZone.drag-enter { border: 5px dashed lightgreen !important; }
 #dropZone.drag-leave { border: 5px dashed silver !important; }
 #dropZone.drag-not-allow { border: 5px dashed red !important; }
 #result {
-    margin: 5px 0;
+    margin: 20px 0;
     height: 300px;
     width: 99%;
 }
-#error {
-    visibility: hidden;
-    color: #f00;
-}
+#messageError, #messageOk { 
+    font-weight: bold; 
+    float: left; 
+    margin: 20px 0; }
+#messageError { color: #f00; }
+#messageOk { color: #07B900; }
